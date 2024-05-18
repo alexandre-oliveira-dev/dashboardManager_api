@@ -40,15 +40,10 @@ jobs:
         username: "ec2-user"
         key: ${{ secrets.EC2_PRIVATE_KEY }}
         script: |
-          export PATH="$PATH:/usr/local/bin"
           cd /home/ec2-user/app
           npm install --production
 
     - name: Restart PM2
-      uses: appleboy/ssh-action@v1.0.3
-      with:
-        host: "52.67.38.246"
-        username: "ec2-user"
-        key: ${{ secrets.EC2_PRIVATE_KEY }}
-        script: |
-          pm2 restart all || pm2 start /home/ec2-user/app/index.js
+      run: ssh -o StrictHostKeyChecking=no ec2-user@52.67.38.246 "pm2 restart all || pm2 start /home/ec2-user/app/main.ts"
+      env:
+        EC2_PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
