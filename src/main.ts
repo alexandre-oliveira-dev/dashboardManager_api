@@ -5,6 +5,6 @@ import * as cors from 'cors';
 export async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(cors());
-  await app.listen(5000);
+  await app.listen(5000, () => `api online 5000`);
 }
 bootstrap();
