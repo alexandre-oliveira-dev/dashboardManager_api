@@ -41,7 +41,7 @@ jobs:
         key: ${{ secrets.EC2_PRIVATE_KEY }}
         script: |
           cd /home/ec2-user/app
-          npm install --production
+          sudo npm i yarn -g && yarn
 
     - name: Restart PM2
       run: ssh -o StrictHostKeyChecking=no ec2-user@52.67.38.246 "pm2 restart all || pm2 start /home/ec2-user/app/main.ts"
