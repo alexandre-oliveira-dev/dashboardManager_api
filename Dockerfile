@@ -1,20 +1,20 @@
-# Use a imagem oficial do Node.js
-FROM node:latest
 
-# Defina o diretório de trabalho dentro do contêiner
-WORKDIR /app
+# FROM node:latest
 
-# Copie o arquivo package.json e o arquivo package-lock.json para o diretório de trabalho
-COPY package*.json ./
+# # Defina o diretório de trabalho dentro do contêiner
+# WORKDIR /app
 
-# Instale as dependências do projeto
-RUN npm install yarn && yarn
+# # Copie o arquivo package.json e o arquivo package-lock.json para o diretório de trabalho
+# COPY package*.json ./
 
-# Copie todos os arquivos do diretório atual para o diretório de trabalho dentro do contêiner
-COPY . .
+# # Instale as dependências do projeto
+# RUN npm install yarn && yarn
 
-# Exponha a porta em que o servidor da API está sendo executado
-EXPOSE 5000
+# # Copie todos os arquivos do diretório atual para o diretório de trabalho dentro do contêiner
+# COPY . .
+
+# # Exponha a porta em que o servidor da API está sendo executado
+# EXPOSE 5000
 
 
 
