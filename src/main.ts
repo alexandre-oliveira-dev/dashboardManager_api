@@ -6,7 +6,7 @@ export async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(cors());
 
-  await app.listen(process.env.PORT || 5000, () =>
+  await app.listen(process.env.PORT, () =>
     console.log(`API online on port ${process.env.PORT}`),
   );
 }
