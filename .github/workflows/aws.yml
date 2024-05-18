@@ -28,6 +28,11 @@ jobs:
         REMOTE_USER: "ec2-user"
         TARGET: "/home/ec2-user/app"
 
+    - name: Install Node.js and npm
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
     - name: Install Dependencies on Server
       uses: appleboy/ssh-action@v1.0.3
       with:
@@ -35,7 +40,8 @@ jobs:
         username: "ec2-user"
         key: ${{ secrets.EC2_PRIVATE_KEY }}
         script: |
-          npm i
+          cd /home/ec2-user/app
+          yarn install --production
 
     - name: Restart PM2
       uses: appleboy/ssh-action@v1.0.3
