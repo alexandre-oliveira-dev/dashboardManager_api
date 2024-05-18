@@ -14,7 +14,7 @@ import { CreateEmployeDto, EmployesService } from './employe.service';
 export class EmployesController {
   constructor(private readonly appService: EmployesService) {}
 
-  @Get()
+  @Get('/')
   get() {
     return 'Online';
   }
