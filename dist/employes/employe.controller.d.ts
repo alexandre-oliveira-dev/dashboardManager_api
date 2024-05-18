@@ -28,7 +28,6 @@ import { CreateEmployeDto, EmployesService } from './employe.service';
 export declare class EmployesController {
     private readonly appService;
     constructor(appService: EmployesService);
-    get(): string;
     createEmployes(body: CreateEmployeDto): Promise<import("mongoose").Document<unknown, {}, import("../schemas/employes").Employes> & import("../schemas/employes").Employes & Required<{
         _id: unknown;
     }>>;

@@ -19,9 +19,6 @@ let EmployesController = class EmployesController {
     constructor(appService) {
         this.appService = appService;
     }
-    get() {
-        return 'Online';
-    }
     async createEmployes(body) {
         const res = await this.appService.createEmployes(body);
         return res;
@@ -48,12 +45,6 @@ let EmployesController = class EmployesController {
     }
 };
 exports.EmployesController = EmployesController;
-__decorate([
-    (0, common_1.Get)('/'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], EmployesController.prototype, "get", null);
 __decorate([
     (0, common_1.Post)('/create'),
     __param(0, (0, common_1.Body)()),
