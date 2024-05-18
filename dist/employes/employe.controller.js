@@ -44,7 +44,6 @@ let EmployesController = class EmployesController {
         return this.appService.deleteEmploye();
     }
     deleteOne(id) {
-        console.log('🚀 ~ EmployesController ~ deleteOne ~ id:', id);
         return this.appService.deleteOneEmploye(id);
     }
 };

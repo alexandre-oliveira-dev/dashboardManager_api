@@ -51,7 +51,6 @@ let EmployesService = class EmployesService {
         return doc.save();
     }
     async getEmployes(page, userId) {
-        console.log('🚀 ~ EmployesService ~ getEmployes ~ userId:', userId);
         const totalDocuments = await this.service.countDocuments();
         const pageSize = 5;
         const totalPages = Math.ceil(totalDocuments / pageSize);
@@ -59,7 +58,6 @@ let EmployesService = class EmployesService {
             .find({ userId: userId })
             .skip((page - 1) * pageSize)
             .limit(pageSize);
-        console.log('🚀 ~ EmployesService ~ getEmployes ~ res:', res);
         return {
             data: res,
             pageInfo: {
