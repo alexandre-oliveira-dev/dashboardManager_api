@@ -1,11 +1,21 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import cors from 'cors';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
-export async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  app.use(cors());
+async function bootstrap() {
+  const appOptions = { cors: true };
+  const app = await NestFactory.create(AppModule, appOptions);
+  app.setGlobalPrefix('api');
 
-  await app.listen(5000, () => console.log(`API online on port 5000`));
+  const options = new DocumentBuilder()
+    .setTitle('Dashboard Manager api')
+    .setVersion('1.0')
+    .setBasePath('/')
+    .addBearerAuth()
+    .build();
+  const document = SwaggerModule.createDocument(app, options);
+  SwaggerModule.setup('/docs', app, document);
+
+  await app.listen(5000);
 }
 bootstrap();
