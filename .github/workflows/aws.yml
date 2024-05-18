@@ -36,7 +36,7 @@ jobs:
         key: ${{ secrets.EC2_PRIVATE_KEY }}
         script: |
           cd /home/ec2-user/app
-          yarn install --production
+          yarn
 
     - name: Restart PM2
       uses: appleboy/ssh-action@v1.0.3
