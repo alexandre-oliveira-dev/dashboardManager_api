@@ -41,8 +41,6 @@ jobs:
         key: ${{ secrets.EC2_PRIVATE_KEY }}
         script: |
           cd /home/ec2-user/app
-          sudo npm i yarn -g && yarn
+          sudo npm i yarn -g && yarn && yarn start
 
-    - name: start api
-      run: yarn start
       
