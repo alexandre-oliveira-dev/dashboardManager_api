@@ -21,15 +21,15 @@ jobs:
         ARGS: "-rltgoDzvO"
         SOURCE: "./"
         EXCLUDE: "/.git/, /.github/, /node_modules/, /pem/"
-        REMOTE_HOST: "https://52.67.38.246/"
-        REMOTE_USER: "ubuntu"
+        REMOTE_HOST: "52.67.38.246"
+        REMOTE_USER: "ec2-user"
         TARGET: "/home/ubuntu"
 
     - name: Install Dependencies on Server
       uses: appleboy/ssh-action@v1.0.3
       with:
-        host: "https://52.67.38.246/"
-        username: "ubuntu"
+        host: "52.67.38.246"
+        username: "ec2-user"
         key: ${{secrets.EC2_PRIVATE_KEY}}
         script: |
           npm i
@@ -37,8 +37,8 @@ jobs:
     - name: Restart PM2
       uses: appleboy/ssh-action@v1.0.3
       with:
-        host: "https://52.67.38.246/"
-        username: "ubuntu"
+        host: "52.67.38.246"
+        username: "ec2-user"
         key: ${{secrets.EC2_PRIVATE_KEY}}
         script: |
           pm2 restart all
