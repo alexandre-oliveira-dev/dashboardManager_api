@@ -44,7 +44,4 @@ jobs:
           sudo npm i yarn -g && yarn
 
     - name: docker start
-        run: docker compose up --build 
-             
-
-      
+      run: docker compose up --build 
