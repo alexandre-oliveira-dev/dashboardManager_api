@@ -43,4 +43,9 @@ jobs:
           cd /home/ec2-user/app
           sudo npm i yarn -g && yarn
 
+    - name: docker start
+      with:
+        script: |
+          docker compose up --build    
+
       
