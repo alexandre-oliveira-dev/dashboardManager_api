@@ -37,9 +37,9 @@ export class EmployesController {
   }
 
   @Get('/employes')
-  getEmployes(@Query() page: any, @Query() userId: any) {
+  getEmployes(@Query('page') page: any, @Query('userId') userId: any) {
     try {
-      return this.appService.getEmployes(page.page, userId.userId);
+      return this.appService.getEmployes(page.page, userId);
     } catch (err) {
       throw err;
     }
@@ -54,7 +54,6 @@ export class EmployesController {
   }
   @Delete('/delete/:id')
   deleteOne(@Param() id: string) {
-    console.log('🚀 ~ EmployesController ~ deleteOne ~ id:', id);
     return this.appService.deleteOneEmploye(id);
   }
 }
