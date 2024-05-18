@@ -1,0 +1,45 @@
+name: Publish dashboardManager on ec2 aws
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    name: Deploy to EC2
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout the files
+      uses: actions/checkout@v3
+
+    - name: Install Dependencies
+      run: yarn install
+
+    - name: Copy files with SSH
+      uses: easingthemes/ssh-deploy@main
+      env:
+        SSH_PRIVATE_KEY: ${{secrets.EC2_PRIVATE_KEY}}
+        ARGS: "-rltgoDzvO"
+        SOURCE: "./"
+        EXCLUDE: "/.git/, /.github/, /node_modules/, /pem/"
+        REMOTE_HOST: "https://52.67.38.246/"
+        REMOTE_USER: "ubuntu"
+        TARGET: "/home/ubuntu"
+
+    - name: Install Dependencies on Server
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: "https://52.67.38.246/"
+        username: "ubuntu"
+        key: ${{secrets.EC2_PRIVATE_KEY}}
+        script: |
+          npm i
+
+    - name: Restart PM2
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: "https://52.67.38.246/"
+        username: "ubuntu"
+        key: ${{secrets.EC2_PRIVATE_KEY}}
+        script: |
+          pm2 restart all
+          
