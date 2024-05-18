@@ -7,13 +7,16 @@ export class Employes extends Document {
   name: string;
 
   @Prop({ required: true })
-  adimissionDate: Date;
+  admissionDate: Date;
 
   @Prop({ required: true })
   office: string;
 
   @Prop({ required: true })
   departament: string;
+
+  @Prop({ required: true })
+  userId: string;
 }
 
 export const EmployesSchema = SchemaFactory.createForClass(Employes);

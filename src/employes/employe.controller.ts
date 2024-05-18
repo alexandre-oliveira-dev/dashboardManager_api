@@ -1,4 +1,13 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  Query,
+} from '@nestjs/common';
 import { CreateEmployeDto, EmployesService } from './employe.service';
 
 @Controller()
@@ -28,19 +37,24 @@ export class EmployesController {
   }
 
   @Get('/employes')
-  getEmployes() {
-    return this.appService.getEmployes();
+  getEmployes(@Query() page: any, @Query() userId: any) {
+    try {
+      return this.appService.getEmployes(page.page, userId.userId);
+    } catch (err) {
+      throw err;
+    }
   }
   @Get('/employe/:id')
   getEmploye(@Param() param: any) {
     return this.appService.getEmploye(param?.id);
   }
-  @Post('/deleteAll')
+  @Delete('/deleteAll')
   delete() {
     return this.appService.deleteEmploye();
   }
-  @Post('/delete/:id')
+  @Delete('/delete/:id')
   deleteOne(@Param() id: string) {
+    console.log('🚀 ~ EmployesController ~ deleteOne ~ id:', id);
     return this.appService.deleteOneEmploye(id);
   }
 }
