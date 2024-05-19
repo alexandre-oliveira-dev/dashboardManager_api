@@ -9,9 +9,11 @@ const platform_express_1 = require("@nestjs/platform-express");
 const server = express();
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule, new platform_express_1.ExpressAdapter(server));
-    server.get('/', (req, res) => res.json({ message: 'hello word' }));
+    server.get('/', (req, res) => res.json({
+        message: '🦄🌈✨👋🌎🌍🌏✨🌈🦄',
+    }));
     app.use(cors());
-    await app.listen(process.env.PORT, () => console.log(`API online on port ${process.env.PORT}`));
+    await app.listen(5000, () => console.log(`API online on port ${process.env.PORT}`));
 }
 exports.bootstrap = bootstrap;
 bootstrap();

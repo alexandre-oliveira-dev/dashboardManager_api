@@ -12,6 +12,11 @@
     "baseUrl": "./",
     "incremental": true,
     "skipLibCheck": true
-  },
+  }, 
+  "include": [
+    "./api*.ts",
+    "src/**/*.ts",
+    "express/**/*.ts"
+  ],
   
 }

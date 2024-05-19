@@ -8,9 +8,13 @@ const server = express();
 
 export async function bootstrap() {
   const app = await NestFactory.create(AppModule, new ExpressAdapter(server));
-  server.get('/', (req, res) => res.json({ message: 'hello word' }));
+  server.get('/', (req, res) =>
+    res.json({
+      message: '🦄🌈✨👋🌎🌍🌏✨🌈🦄',
+    }),
+  );
   app.use(cors());
-  await app.listen(process.env.PORT, () =>
+  await app.listen(5000, () =>
     console.log(`API online on port ${process.env.PORT}`),
   );
 }
